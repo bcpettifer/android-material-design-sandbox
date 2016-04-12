@@ -1,5 +1,7 @@
 package com.example.android.materialdesigncodelab.fragments;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.android.materialdesigncodelab.DetailActivity;
 import com.example.android.materialdesigncodelab.R;
 
 /**
@@ -34,7 +37,15 @@ public class CardContentFragment extends Fragment {
 
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.item_card, parent, false));
-            
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, DetailActivity.class);
+                    context.startActivity(intent);
+                }
+            });
+
             // Adding Snackbar to Action Button inside card
             Button button = (Button)itemView.findViewById(R.id.action_button);
             button.setOnClickListener(new View.OnClickListener(){
